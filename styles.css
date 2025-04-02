@@ -72,14 +72,15 @@ body::before {
     width: 90%;
     max-width: 800px;
     background: rgba(33, 37, 41, 0.95);
-    margin: 40px auto;
-    padding: 30px;
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 1;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    box-sizing: border-box;
 }
 
 h1 {
@@ -332,4 +333,125 @@ button:disabled {
     opacity: 0.8;
     position: relative;
     z-index: 1;
+}
+
+/* Base responsive styles */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Mobile-first responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .question {
+        padding: 20px;
+        margin: 15px 0;
+    }
+
+    .question p {
+        font-size: 1.1em;
+    }
+
+    label {
+        padding: 12px 15px;
+        margin: 10px 0;
+        font-size: 0.95em;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    /* Results page mobile adjustments */
+    #results strong {
+        width: 100%;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    #interpretation {
+        padding: 20px;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .progress-indicator {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+/* Fix for iOS devices */
+@supports (-webkit-touch-callout: none) {
+    .container {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Landscape orientation */
+@media screen and (max-height: 500px) {
+    .container {
+        margin: 0;
+    }
+
+    .question {
+        min-height: auto;
+        margin: 10px 0;
+    }
+}
+
+/* Fix viewport height for mobile browsers */
+:root {
+    --vh: 1vh;
+}
+
+body {
+    min-height: calc(var(--vh, 1vh) * 100);
 }

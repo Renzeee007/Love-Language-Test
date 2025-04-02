@@ -1,3 +1,16 @@
+// Add this at the beginning of your file
+function setVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set initial value
+setVH();
+
+// Update on resize and orientation change
+window.addEventListener('resize', setVH);
+window.addEventListener('orientationchange', setVH);
+
 const questions = [
     // Words of Affirmation vs Physical Touch
     { question: "What would make you feel more loved?", 
