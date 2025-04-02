@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Language Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Love Language Results</h1>
+        <div id="results"></div>
+        <div id="interpretation"></div>
+        <a href="index.html" class="retake-button"><button>Retake Test</button></a>
+        <p class="credits">Created by: Renz Luna</p>
+    </div>
+
+    <script>
+        const languageNames = {
+            words: "Words of Affirmation",
+            touch: "Physical Touch",
+            gifts: "Receiving Gifts",
+            time: "Quality Time",
+            acts: "Acts of Service"
+        };
+
+        const languageDescriptions = {
+            words: "You value verbal expressions of love and appreciation. Hearing 'I love you' and receiving verbal encouragement means the world to you.",
+            touch: "Physical closeness and touch are important to you. Hugs, kisses, and physical presence make you feel most loved.",
+            gifts: "You appreciate thoughtful gifts and gestures. To you, gifts represent care and consideration from others.",
+            time: "Quality time and undivided attention matter most to you. Having someone's complete focus makes you feel valued.",
+            acts: "You feel most loved when others do things to help or support you. Actions speak louder than words in your view."
+        };
+
+        const results = JSON.parse(localStorage.getItem("results"));
+        const resultsContainer = document.getElementById("results");
+        const interpretationContainer = document.getElementById("interpretation");
+
+        let resultsHTML = "<ul>";
+        Object.entries(results).forEach(([key, value]) => {
+            resultsHTML += `
+                <li>
+                    <strong>${languageNames[key]}</strong>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: ${value}%">${value}%</div>
+                    </div>
+                </li>`;
+        });
+        resultsHTML += "</ul>";
+
+        const topLanguage = Object.entries(results)[0];
+        const interpretation = `
+            <h2>Your Primary Love Language: ${languageNames[topLanguage[0]]}</h2>
+            <p>${languageDescriptions[topLanguage[0]]}</p>
+            <p>Understanding your love language can help improve your relationships by:
+                <ul>
+                    <li>Helping you communicate your needs more effectively</li>
+                    <li>Understanding how you prefer to receive love</li>
+                    <li>Recognizing when others are showing you love in their own way</li>
+                </ul>
+            </p>
+        `;
+
+        resultsContainer.innerHTML = resultsHTML;
+        interpretationContainer.innerHTML = interpretation;
+    </script>
+</body>
+</html>
